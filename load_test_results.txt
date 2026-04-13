@@ -1,0 +1,47 @@
+📊 WEEK 8 LOAD TEST RESULTS
+🧪 System Overview
+Web Server: 172.31.71.221 (Apache + PHP)
+Database Server: 172.31.66.157 (MySQL)
+Test Tool: Apache Bench (ab)
+Load Tester: EC2 Ubuntu instance
+⚙️ Test 1: Baseline Load Test
+
+Command used:
+
+ab -n 1000 -c 50 http://172.31.71.221/ping.php
+
+Results:
+
+Complete Requests: 1000
+Failed Requests: 0
+Requests per second: 3046.91
+Average response time: 16 ms
+Time per request: 16.410 ms
+
+Observation:
+System handled normal load efficiently with no failures. Response times were low and stable.
+
+💥 Test 2: Stress Load Test
+
+Command used:
+
+ab -n 5000 -c 500 http://172.31.71.221/ping.php
+
+Results:
+
+Complete Requests: 5000
+Failed Requests: 0
+Requests per second: 3469.22
+Average response time: 144 ms
+Time per request: 144.125 ms
+
+Observation:
+System remained stable under high concurrency. Response times increased significantly due to CPU and database load, but no requests failed.
+
+📈 Overall Analysis
+
+The system demonstrates strong stability under both moderate and heavy load. While performance decreases under stress, the architecture remains functional with zero failed requests. This indicates a robust two-tier design (Web + Database), though scalability improvements would be required for production-level traffic.
+
+✔ Conclusion
+
+The system successfully handles both baseline and stress workloads without failure, confirming correct integration and acceptable performance under load.
